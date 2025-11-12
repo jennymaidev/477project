@@ -5,8 +5,8 @@ import sqlite3
 import os
 
 # Configuration
-RAW_DATA_DIR = './data/raw/'
-INTERIM_DATA_DIR = './data/interim/'
+RAW_DATA_DIR = '../data/raw/'
+INTERIM_DATA_DIR = '../data/interim/'
 DB_PATH = '../data/project_data.db'
 
 FILES_TO_LOAD = {
