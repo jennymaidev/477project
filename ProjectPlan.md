@@ -54,21 +54,20 @@ The primary integration strategy involves a series of relational joins and geosp
 | Milestone | Responsible Team Member(s) | Target Completion Date | Status |
 | :--- | :--- | :--- | :--- |
 | **Phase 1: Planning & Setup** | | | |
-| Project Plan & GitHub Release | Both | October 7, 2025 | Completed |
+| Project Plan & GitHub Release | Both | Oct 7, 2025 | Completed |
 | **Phase 2: Acquisition & Storage** | | | |
-| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | October 13, 2025 | Completed |
-| SQLite Schema Design & Data Load | Jenny Mai | October 17, 2025 | To Do |
+| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | Oct 13, 2025 | Completed |
+| SQLite Schema Design & Data Load | Jenny Mai | Oct 17, 2025 | In-progress |
 | **Phase 3: Integration & Cleaning** | | | |
-| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | October 23, 2025 | Completed |
-| Data Quality Profile & Assessment Script | Shenhua Zhang | October 27, 2025 | To Do |
-| Data Cleaning Scripts (Missing/Outliers/Standardization) | Shenhua Zhang | November 3, 2025 | To Do |
+| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | Oct 23, 2025 | Completed |
+| Data Quality Profile & Data Cleaning Scripts | Jenny Mai | Nov 9, 2025 | Completed |
 | **Phase 4: Reporting & Automation** | | | |
-| Interim Status Report Submission | Both | [Canvas Deadline] | To Do |
-| Statistical Analysis & Visualization Script | Shenhua Zhang | November 17, 2025 | To Do |
-| Workflow Automation (Snakemake implementation) | Jenny Mai | December 5, 2025 | To Do |
+| Initial Statistical Analysis & Visualization | Shenhua Zhang | Nov 17, 2025 | In-progress |
+| Interim Status Report Submission | Both | Nov 13, 2025 | In-progress |
+| Workflow Automation (Snakemake implementation) | Jenny Mai | Dec 5, 2025 | To Do |
 | **Phase 5: Final Submission** | | | |
-| Final README.md Report & Documentation | Shenhua Zhang | December 10, 2025 | To Do |
-| Final Project Tag/Release & Box Upload | Both | [Canvas Deadline] | To Do |
+| Final README.md Report of Findings & Documentation | Shenhua Zhang | Dec 10, 2025 | To Do |
+| Final Project Tag/Release & Box Upload | Both | Dec 10, 2025 | To Do |
 
 ---
 
