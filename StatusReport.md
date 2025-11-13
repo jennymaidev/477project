@@ -10,11 +10,7 @@
 
 ## 1. Executive Summary of Progress (Milestone 2 to 3)
 
-The project is progressing well, with all core Data Acquisition, Integration, and Data Cleaning steps successfully completed and documented. The team successfully addressed the major technical challenges, including handling the large data volume, multi-dataset integration via PIN, and performing optimized geospatial enrichment.
-
-A significant strategic change was made to the project plan to ensure robustness and timely completion: we formally **removed the necessity for a fourth dataset** (Residential Characteristics/Square Footage). This decision simplified the scope, allowing us to successfully complete the Data Cleaning phase ahead of schedule. The analytic focus has been shifted from a complex multivariate model to a robust **univariate comparison** focused on raw sale price for a strictly filtered, homogeneous market segment (single-family detached homes).
-
-The immediate focus is now shifting to **Statistical Analysis, Visualization, and Workflow Automation.**
+The project is progressing well, with all core Data Acquisition, Integration, and Data Cleaning steps successfully completed and documented. The team successfully addressed the major technical challenges, including handling the large data volume, multi-dataset integration via PIN, and performing optimized geospatial enrichment. The immediate focus is now shifting to Statistical Analysis, Visualization, and Workflow Automation.
 
 ---
 
@@ -31,8 +27,7 @@ The table below reflects the current status of all project milestones. The updat
 | SQLite Schema Design & Data Load | Jenny Mai | October 17, 2025 | Completed | Script: src/storage.py, Output: data/project_data.db (Ignored by Git) |
 | **Phase 3: Integration & Cleaning** | | | | |
 | PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | October 23, 2025 | Completed | Script logic tested in notebooks/3_geospatial_enrichment.ipynb |
-| Data Quality Profile & Assessment Script | Shenhua Zhang | October 27, 2025 | In-Progress | Initial profiling and class selection confirmed in notebooks/4_data_filtering_cleaning.ipynb |
-| Data Cleaning Scripts (Missing/Outliers/Standardization) | Jenny Mai | November 3, 2025 | Completed | Script: src/clean.py, Notebook: notebooks/4_data_filtering_cleaning.ipynb |
+| Data Cleaning Scripts | Both | November 3, 2025 | Completed | Script: src/clean.py, Notebook: notebooks/4_data_filtering_cleaning.ipynb |
 | **Phase 4: Reporting & Automation** | | | | |
 | Interim Status Report Submission | Both | November 13, 2025 | Completed | This document (StatusReport.md) |
 | Statistical Analysis & Visualization Script | Shenhua Zhang | November 17, 2025 | In-Progress | Initial correlation and premium calculation in notebooks/5_exploring_analysis.ipynb |
@@ -46,7 +41,7 @@ The table below reflects the current status of all project milestones. The updat
 ## 4. Team Member Contributions
 
 ### Jenny Mai (ETL Foundation & Data Acquisition & Cleaning)
-
+During this milestone, I was responsible for establishing the robust and reproducible Extract, Transform, and Load (ETL) foundation for the project. This involved completing the initial Data Acquisition of all three required datasets (Sales, Universe/Location, and CTA Stations) and formalizing the storage strategy by implementing the `src/storage.py` script to load all raw files into the SQLite database (`project_data.db`). I also completed the core integration task by implementing the PIN-Join and Geospatial Enrichment script, which calculated and attached the `min_distance_meters` feature to the property sales data. Finally, I executed the final Data Cleaning and Standardization logic in the workflow, applying strict filters for property type, market validity, and temporal consistency, resulting in the final, clean `final_cleaned_data.csv` ready for Shenhua’s statistical analysis.
 
 
 ### Shenhua Zhang (Data Quality & Analysis)
