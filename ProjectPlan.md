@@ -16,7 +16,8 @@ This project seeks to answer the following research questions:
 
 * Is there a statistically significant correlation between the Euclidean distance (in meters) of a residential property from the nearest active CTA rail station and its raw sale price?
 * How does the transit line color (e.g., Red Line vs. Brown Line) influence the average sale price of properties within a quarter mile of the station, compared to the regional median?
-* What is the calculated premium (or discount) in median sale price for detached single-family homes located within 0.5 miles of an L-stop, compared to those located 1 to 2 miles away?
+* How do Residense Property Class and Minimum distance to the CTA station influence the sale price? Is there a strong correlation?
+
 
 ---
 
