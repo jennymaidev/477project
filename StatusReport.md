@@ -14,7 +14,7 @@ Since the submission of the Project Plan (Milestone 1), the team has made signif
 
 The primary achievement of this milestone was the successful development of a reproducible ETL (Extract, Transform, Load) pipeline. We addressed the challenge of managing large-volume public data (millions of property records) by implementing a SQLite-based storage strategy and developing optimized Python scripts for geospatial enrichment. Specifically, we utilized KDTree algorithms to efficiently calculate the distance between over 2.6 million properties and 145 CTA rail stations.
 
-Furthermore, we have finalized the analytical dataset. By applying strict data quality filters—isolating single-family homes and removing non-market transactions—we have produced a clean, homogeneous dataset (final_cleaned_data.csv) that allows us to answer our revised research questions with statistical validity. Our initial exploratory analysis has already yielded preliminary correlation metrics, confirming that the data is ready for the final modeling phase.
+Furthermore, we have finalized the analytical dataset. By applying strict data quality filters, isolating single-family homes and removing non-market transactions, we have produced a clean, homogeneous dataset (final_cleaned_data.csv) that allows us to answer our revised research questions with statistical validity. Our initial exploratory analysis has already yielded preliminary correlation metrics, confirming that the data is ready for the final modeling phase.
 
 ---
 
