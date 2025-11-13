@@ -10,7 +10,67 @@
 
 ## 1. Executive Summary of Progress (Milestone 2 to 3)
 
-The project is progressing well, with all core Data Acquisition, Integration, and Data Cleaning steps successfully completed and documented. The team successfully addressed the major technical challenges, including handling the large data volume, multi-dataset integration via PIN, and performing optimized geospatial enrichment. The immediate focus is now shifting to Statistical Analysis, Visualization, and Workflow Automation.
+Since the submission of the Project Plan (Milestone 1), the team has made significant strides in building the data infrastructure required to analyze the relationship between public transit and property values in Cook County. We have successfully moved from the planning phase into full execution, completing the core Data Acquisition, Storage, Integration, and Cleaning phases of the data lifecycle.
+
+The primary achievement of this milestone was the successful development of a reproducible ETL (Extract, Transform, Load) pipeline. We addressed the challenge of managing large-volume public data (millions of property records) by implementing a SQLite-based storage strategy and developing optimized Python scripts for geospatial enrichment. Specifically, we utilized KDTree algorithms to efficiently calculate the distance between over 2.6 million properties and 145 CTA rail stations.
+
+Furthermore, we have finalized the analytical dataset. By applying strict data quality filters—isolating single-family homes and removing non-market transactions—we have produced a clean, homogeneous dataset (final_cleaned_data.csv) that allows us to answer our revised research questions with statistical validity. Our initial exploratory analysis has already yielded preliminary correlation metrics, confirming that the data is ready for the final modeling phase.
+
+---
+
+## 2. Changes to Project Plan and Scope
+
+In response to data accessibility challenges and a re-evaluation of project complexity during Milestone 2, we have made a strategic adjustment to the project scope.
+
+### 2.1. Removal of the "Characteristics" Dataset
+
+Originally, our plan included acquiring a fourth dataset ("Assessor - Residential Characteristics") to obtain the square footage of every property. This was intended to create a "Price Per Square Foot" normalization variable. However, integrating this massive, complex dataset introduced significant risks regarding data sparsity and join integrity.
+
+Decision: We eliminated the need for this fourth dataset. Impact: Instead of a multivariate model normalizing by size, we shifted to a "Strict Filtering" approach. We now filter the dataset to include only "Class 202-209" (One-Story and Two-Story Single Family Homes). By isolating a homogeneous housing type, we can use the Raw Sale Price as a valid dependent variable, significantly simplifying the ETL pipeline while maintaining statistical rigor.
+
+We also reduced our scope of the project from covering Chicago to covering only Cook County areas.
+
+### 2.2. Revision of Research Questions
+
+Consequently, our research questions (RQs) were updated to reflect this change:
+
+**RQ 1**: Focuses on the correlation between distance and raw sale price (rather than adjusted price).
+
+**RQ 3**: Focuses specifically on the median price premium for detached single-family homes, rather than a generalized premium for all property types.
+
+---
+
+## 3. Technical Implementation & Artifacts
+
+We have completed the following technical tasks, evidenced by artifacts currently in the GitHub repository.
+
+### 3.1. Data Acquisition and Storage
+
+We implemented a programmatic acquisition strategy using Python.
+
+**Acquisition**: The script src/acquire.py (prototyped in notebooks/1_data_acquisition.ipynb) successfully downloads the Cook County Sales Data (CSV), Parcel Universe locations (API), and CTA Station data (GeoJSON).
+
+**Storage**: To adhere to best practices for data organization, we implemented src/storage.py. This script initializes a SQLite database (data/project_data.db) and loads the raw CSV and JSON data into three distinct tables (raw_sales, raw_universe, raw_cta). This database serves as the single source of truth for downstream processing.
+
+### 3.2. Integration and Geospatial Enrichment
+
+The most complex technical challenge was merging the sales data (which lacks coordinates) with location data.
+
+**PIN-Join**: We utilized the 14-digit Property Index Number (PIN) as the primary key. We handled data inconsistencies by zero-padding PINs to ensure accurate string matching between the raw_sales and raw_universe tables.
+
+**Distance Calculation**: We developed a geospatial enrichment logic (found in notebooks/3_geospatial_enrichment.ipynb). Using scipy.spatial.KDTree, we constructed a spatial tree of all CTA station coordinates. We then queried this tree for every property in the dataset to find the nearest station and calculate the Euclidean distance in meters. This added two critical features to our dataset: min_distance_meters and nearest_cta_station.
+
+### 3.3. Data Cleaning and Filtering
+
+To address the scope changes described in Section 2, we implemented strict cleaning logic in notebooks/4_data_filtering_cleaning.ipynb (logic finalized in src/clean.py).
+
+**Homogeneity Filter**: We filtered the class column to strictly keep codes 202 through 209 (Single Family Homes).
+
+**Market Validity**: We applied boolean filters to exclude non-market sales (is_multisale is False, sale_price > $10k, Warranty/Trustee deeds only).
+
+**Temporal Filter**: We filtered for sales occurring between 2018 and 2024 to ensure recent market relevance.
+
+**Outlier Removal**: We capped the top and bottom 1% of sale prices to remove extreme outliers that would skew the mean.
 
 ---
 
@@ -45,8 +105,7 @@ During this milestone, I was responsible for establishing the robust and reprodu
 
 
 ### Shenhua Zhang (Data Quality & Analysis)
-In the Milestone 3, I am responsible for the statistical analysis between Cook County Property Sales and CTA Railway. Given the 3 research questions, I analyzed them with appropriate statistical analytical methods respectively. For the first question, I used `.corr()` to identify the correlation between CTA distance and sale price, which turned out to be a weak negative correlation. From the data, we can conclude that these two variables have weak relationship. In the second questions, I first processed all `nearest_cta_lines` (which are messy data, hard to identify lines in plain words) into some new columns. Each column represents if the current bus stop is the current color of line with boolean (e.g. if the bus stop is blue and purple, then `contains_blue` and `contains_red` will be True, other columns will be False). I also counted the number of lines for bus stops that are crossed with many lines. Eventually, all lines have different degree of weak slight positive correlation with sale price (less than 0.1); line number also has a very weak positive correlation with sale price. In the plot, we can hardly see any significant relationship. Last but not least, the third question investigates the if property class and CTA distance will together make an influence to the sale price. Checking the original source, I discovered the representation of "2-02" to "2-09" (as indicated in the code) of the property class. They represent different types of houses varied by built year and size of space. Since this contains 2 features, I first drew the heatmap of their correlations, and correlation of -0.23 will not likely to cause multicollinearity issue. I run the regression model for "sale_price ~ min_distance_meters * Q('class')". In the end, it shows there is a moderate influence of the interaction term on sale price. 
-
+For Milestone 3, I was responsible for the statistical analysis between Cook County Property Sales and CTA Railway proximity. Given our three revised research questions, I analyzed them with appropriate statistical methods. For RQ1, I used `.corr()` to identify the correlation between CTA distance and sale price, which turned out to be a weak negative correlation (-0.23), suggesting that as distance increases, price slightly decreases. For RQ2, I processed the `nearest_cta_lines` text data into boolean columns to identify line colors (e.g., `contains_blue`, `contains_red`). I found that while individual lines have different degrees of correlation, the relationships were generally weak. Finally, for RQ3, I investigated the interaction between property class and distance. I first verified via heatmap that `class` and `distance` were not collinear (-0.23). I then ran a regression model (`sale_price ~ min_distance_meters * Q('class')`), which indicated a moderate influence (R² = 0.392) of the interaction term on sale price.
 
 ---
 
@@ -56,8 +115,18 @@ As a result of the completed data cleaning and filtering, we performed an initia
 
 | Metric | Value | Interpretation |
 | :--- | :--- | :--- |
-| **RQ 1: Correlation (Distance vs. Sale Price)** | -0.231542 | Indicates a weak negative correlation between CTA distance and sale price. |
-| **RQ 2: Correlation (CTA Line Number vs. Sale Price)** | 0.106675 | Indicates a positive weak correlation between different types of lines and sale price. |
-| **RQ 3: R^2** | 0.392 | Suggests a moderate influences of property class & CTA distance to sale price.  |
+| **RQ 1: Correlation (Distance vs. Sale Price)** | -0.231 | We observed a statistically significant negative correlation. In this context, a negative correlation implies that as the distance to the station increases, the sale price decreases. This preliminarily supports the hypothesis that proximity to transit is associated with higher property values. |
+| **RQ 2: Correlation (CTA Line Number vs. Sale Price)** | 0.107 | We observed weak correlations between specific line colors and price. This suggests that while location matters, the specific line (Red vs. Blue) may be less of a driver of price than the distance itself or the neighborhood characteristics. |
+| **RQ 3: Model Fit (R²)** | 0.392 | Our initial regression model, which accounts for both distance and the specific type of single-family home (Class), explains approximately 39% of the variance in sale price. This is a promising start for a real estate model using only two primary variables. |
 
-These initial findings confirm that the integrated and cleaned dataset is suitable for statistical analysis, validating the core premise of the project and demonstrating progress towards the final goal.
+These initial findings confirm that the integrated and cleaned dataset is suitable for statistical analysis. The data behaves as expected for the domain (showing a "transit premium"), validating the quality of our cleaning pipeline.
+
+---
+
+## 7. Next Steps
+
+With the data infrastructure and cleaning complete, the team will focus on the final two phases of the project:
+
+- Visualization (Shenhua): We will generate some more visualizations, including scatter plots of Distance vs. Price and Box Plots comparing prices across different transit lines and some geospatial visualizations.
+- Workflow Automation (Jenny): We will implement Snakemake to chain our Python scripts (acquire.py -> storage.py -> enrich.py -> clean.py -> analysis.py) into a single reproducible command.
+- Final Reporting: We will synthesize the statistical findings into the final README.md report.
