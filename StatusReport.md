@@ -35,7 +35,7 @@ The table below reflects the current status of all project milestones. The updat
 | Data Cleaning Scripts (Missing/Outliers/Standardization) | Jenny Mai | November 3, 2025 | Completed | Script: src/clean.py, Notebook: notebooks/4_data_filtering_cleaning.ipynb |
 | **Phase 4: Reporting & Automation** | | | | |
 | Interim Status Report Submission | Both | November 13, 2025 | Completed | This document (StatusReport.md) |
-| Statistical Analysis & Visualization Script | Shenhua Zhang | November 17, 2025 | In-Progress | Initial correlation and premium calculation in notebooks/5_initial_analysis.ipynb |
+| Statistical Analysis & Visualization Script | Shenhua Zhang | November 17, 2025 | In-Progress | Initial correlation and premium calculation in notebooks/5_exploring_analysis.ipynb |
 | Workflow Automation (Snakemake implementation) | Jenny Mai | December 5, 2025 | To Do | Snakefile |
 | **Phase 5: Final Submission** | | | | |
 | Final README.md Report of Findings & Documentation | Shenhua Zhang | December 10, 2025 | To Do | |
@@ -50,7 +50,7 @@ The table below reflects the current status of all project milestones. The updat
 
 
 ### Shenhua Zhang (Data Quality & Analysis)
-
+In the Milestone 3, I am responsible for the statistical analysis between Cook County Property Sales and CTA Railway. Given the 3 research questions, I analyzed them with appropriate statistical analytical methods respectively. For the first question, I used `.corr()` to identify the correlation between CTA distance and sale price, which turned out to be a weak negative correlation. From the data, we can conclude that these two variables have weak relationship. In the second questions, I first processed all `nearest_cta_lines` (which are messy data, hard to identify lines in plain words) into some new columns. Each column represents if the current bus stop is the current color of line with boolean (e.g. if the bus stop is blue and purple, then `contains_blue` and `contains_red` will be True, other columns will be False). I also counted the number of lines for bus stops that are crossed with many lines. Eventually, all lines have different degree of weak slight positive correlation with sale price (less than 0.1); line number also has a very weak positive correlation with sale price. In the plot, we can hardly see any significant relationship. Last but not least, the third question investigates the if property class and CTA distance will together make an influence to the sale price. Checking the original source, I discovered the representation of "2-02" to "2-09" (as indicated in the code) of the property class. They represent different types of houses varied by built year and size of space. Since this contains 2 features, I first drew the heatmap of their correlations, and correlation of -0.23 will not likely to cause multicollinearity issue. I run the regression model for "sale_price ~ min_distance_meters * Q('class')". In the end, it shows there is a moderate influence of the interaction term on sale price. 
 
 
 ---
@@ -61,8 +61,8 @@ As a result of the completed data cleaning and filtering, we performed an initia
 
 | Metric | Value | Interpretation |
 | :--- | :--- | :--- |
-| **RQ 1: Pearson's r (Distance vs. Price)** | [Insert r value from analysis] | Indicates a [Positive/Negative/Negligible] correlation between CTA distance and raw sale price. |
-| **RQ 1: P-value** | [Insert p-value from analysis] | Determines the statistical significance of the correlation (p < 0.05). |
-| **RQ 3: Median Premium** (0–0.5 mi vs. 1–2 mi) | [Insert Premium % from analysis] | Suggests properties near transit have a [XX.XX]% [premium/discount] in median price compared to the control group. |
+| **RQ 1: Correlation (Distance vs. Sale Price)** | -0.231542 | Indicates a weak negative correlation between CTA distance and sale price. |
+| **RQ 2: Correlation (CTA Line Number vs. Sale Price)** | 0.106675 | Indicates a positive weak correlation between different types of lines and sale price. |
+| **RQ 3: R^2** | 0.392 | Suggests a moderate influences of property class & CTA distance to sale price.  |
 
 These initial findings confirm that the integrated and cleaned dataset is suitable for statistical analysis, validating the core premise of the project and demonstrating progress towards the final goal.
