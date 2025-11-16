@@ -52,23 +52,23 @@ The primary integration strategy involves a series of relational joins and geosp
 
 ## 5. Timeline
 
-| Milestone | Responsible Team Member(s) | Target Completion Date | Status |
-| :--- | :--- | :--- | :--- |
-| **Phase 1: Planning & Setup** | | | |
-| Project Plan & GitHub Release | Both | Oct 7, 2025 | Completed |
-| **Phase 2: Acquisition & Storage** | | | |
-| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | Oct 13, 2025 | To Do |
-| SQLite Schema Design & Data Load | Jenny Mai | Oct 17, 2025 | To Do |
-| **Phase 3: Integration & Cleaning** | | | |
-| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | Oct 23, 2025 | To Do |
-| Data Quality Profile & Data Cleaning Scripts | Jenny Mai | Nov 9, 2025 | To Do |
-| **Phase 4: Reporting & Automation** | | | |
-| Initial Statistical Analysis & Visualization | Shenhua Zhang | Nov 17, 2025 | To Do |
-| Interim Status Report Submission | Both | Nov 13, 2025 | To Do |
-| Workflow Automation (Snakemake implementation) | Jenny Mai | Dec 5, 2025 | To Do |
-| **Phase 5: Final Submission** | | | |
-| Final README.md Report of Findings & Documentation | Shenhua Zhang | Dec 10, 2025 | To Do |
-| Final Project Tag/Release & Box Upload | Both | Dec 10, 2025 | To Do |
+| Milestone | Responsible Team Member(s) | Target Completion Date | Status | Artifacts & Evidence of Completion |
+| :--- | :--- | :--- | :--- | :--- |
+| **Phase 1: Planning & Setup** | | | | |
+| Project Plan & GitHub Release | Both | October 7, 2025 | Completed | ProjectPlan.md, GitHub Tag: project-plan |
+| **Phase 2: Acquisition & Storage** | | | | |
+| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | October 13, 2025 | Completed | Scripts in src/acquire.py, Notebook: notebooks/1_data_acquisition_test.ipynb |
+| SQLite Schema Design & Data Load | Jenny Mai | October 17, 2025 | Completed | Script: src/storage.py, Output: data/project_data.db (Ignored by Git) |
+| **Phase 3: Integration & Cleaning** | | | | |
+| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | October 23, 2025 | Completed | Script logic tested in notebooks/3_geospatial_enrichment.ipynb |
+| Data Cleaning Scripts | Both | November 3, 2025 | Completed | Script: src/clean.py, Notebook: notebooks/4_data_filtering_cleaning.ipynb |
+| **Phase 4: Reporting & Automation** | | | | |
+| Interim Status Report Submission | Both | November 13, 2025 | Completed | This document (StatusReport.md) |
+| Statistical Analysis & Visualization Script | Shenhua Zhang | November 17, 2025 | In-Progress | Initial correlation and premium calculation in notebooks/5_exploring_analysis.ipynb |
+| Workflow Automation (Snakemake implementation) | Jenny Mai | December 5, 2025 | To Do | Snakefile |
+| **Phase 5: Final Submission** | | | | |
+| Final README.md Report of Findings & Documentation | Shenhua Zhang | December 10, 2025 | To Do | |
+| Final Project Tag/Release & Box Upload | Both | December 10, 2025 | To Do | |
 
 ---
 
