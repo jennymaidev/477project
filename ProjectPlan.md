@@ -57,14 +57,14 @@ The primary integration strategy involves a series of relational joins and geosp
 | **Phase 1: Planning & Setup** | | | |
 | Project Plan & GitHub Release | Both | Oct 7, 2025 | Completed |
 | **Phase 2: Acquisition & Storage** | | | |
-| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | Oct 13, 2025 | Completed |
-| SQLite Schema Design & Data Load | Jenny Mai | Oct 17, 2025 | In-progress |
+| Data Acquisition & Initial Storage (CSV/JSON) | Jenny Mai | Oct 13, 2025 | To Do |
+| SQLite Schema Design & Data Load | Jenny Mai | Oct 17, 2025 | To Do |
 | **Phase 3: Integration & Cleaning** | | | |
-| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | Oct 23, 2025 | Completed |
-| Data Quality Profile & Data Cleaning Scripts | Jenny Mai | Nov 9, 2025 | Completed |
+| PIN-Join & Distance Calculation Script (Enrichment) | Jenny Mai | Oct 23, 2025 | To Do |
+| Data Quality Profile & Data Cleaning Scripts | Jenny Mai | Nov 9, 2025 | To Do |
 | **Phase 4: Reporting & Automation** | | | |
-| Initial Statistical Analysis & Visualization | Shenhua Zhang | Nov 17, 2025 | In-progress |
-| Interim Status Report Submission | Both | Nov 13, 2025 | In-progress |
+| Initial Statistical Analysis & Visualization | Shenhua Zhang | Nov 17, 2025 | To Do |
+| Interim Status Report Submission | Both | Nov 13, 2025 | To Do |
 | Workflow Automation (Snakemake implementation) | Jenny Mai | Dec 5, 2025 | To Do |
 | **Phase 5: Final Submission** | | | |
 | Final README.md Report of Findings & Documentation | Shenhua Zhang | Dec 10, 2025 | To Do |
