@@ -28,7 +28,7 @@ Originally, our plan included acquiring a fourth dataset ("Assessor - Residentia
 
 Decision: We eliminated the need for this fourth dataset. Impact: Instead of a multivariate model normalizing by size, we shifted to a "Strict Filtering" approach. We now filter the dataset to include only "Class 202-209" (One-Story and Two-Story Single Family Homes). By isolating a homogeneous housing type, we can use the Raw Sale Price as a valid dependent variable, significantly simplifying the ETL pipeline while maintaining statistical rigor.
 
-We also reduced our scope of the project from covering Chicago to covering only Cook County areas.
+We also expanded our scope of the project from covering only Chicago to covering all of Cook County.
 
 ### 2.2. Revision of Research Questions
 
